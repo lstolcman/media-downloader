@@ -1,20 +1,14 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Test site</title>
-        {% else %}
-        <title> usual title </title>
-        {% endif %}
-    </head>
-    <body>
-        <h1>Hello, {{ user.username }}!</h1>
-        {% for post in posts %}
-        <div>
-            <b>{{ post.author.username }}</b>
-            <br/>
-            {{ post.body }}
-        </div>
-        <br/>
-        {% endfor %}
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.url.label }}<br/>
+            {{ form.url(size=100) }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}

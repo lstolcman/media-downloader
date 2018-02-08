@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if info %}
+    <img src="{{ info.thumbnail }}" width="200"/><br>
+    <b>Title: </b><a href="{{ info.webpage_url }}">{{ info.title }}</a><br>
+    <b>Length: </b>{{ info.duration }}<br><br>
+    <table border="1">
+        <tr>
+            <th>Quality</th>
+            <th>Format</th>
+            <th>Size of file</th>
+            <th>acodec</th>
+            <th>vcodec</th>
+            <th>abr</th>
+            <th>ext</th>
+            <th>tbr</th>
+            <th>DL url</th>
+        </tr>
+        {% for format in info.formats %}
+        <tr>
+            <td>{{ format.format }}</td>
+            <td>{{ format.format_note }}</td>
+            <td>{{ format.filesize }}</td>
+            <td>{{ format.acodec }}</td>
+            <td>{{ format.vcodec }}</td>
+            <td>{{ format.abr }}</td>
+            <td>{{ format.ext }}</td>
+            <td>{{ format.tbr }}</td>
+            <td><a href="{{ format.url }}">Download</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    no fmts
+    {% endif %}
+{% endblock %}
