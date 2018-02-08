@@ -73,7 +73,12 @@ def index():
     form = InputURL()
     if form.validate_on_submit():
         #return redirect(url_for('dl'))
-        ydl_opts = {'listsubtitles':True}
+        ydl_opts = {\
+            #'requested_subtitles' : True,\
+            'writesubtitles' : True,\
+            'writeautomaticsub' : True,\
+            'skip_download' : True\
+            }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             test_url = 'http://www.youtube.com/watch?v=BaW_jenozKc'
             info = ydl.extract_info(form.url.data, download=False)
@@ -92,3 +97,12 @@ def dl(info=None):
         if 'filesize' in f:
             f['filesize'] = humanize_bytes(f['filesize'])
     return render_template('dl.html', info=info)
+
+
+
+'''
+todo:
+    subtitles
+    downloading in parallel
+    check of filesize by range trick (download one byte or 413 http error) - usebinary search
+'''

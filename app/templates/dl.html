@@ -31,6 +31,44 @@
         </tr>
         {% endfor %}
     </table>
+
+    <br>
+    Subtitles:
+        <table border="1">
+        <tr>
+            <th>lang</th>
+            <th>Format</th>
+            <th>Format</th>
+        </tr>
+        {% for subtitle in info.subtitles %}
+        <tr>
+        <td>{{ subtitle }}</td>
+            {% for lang in info.subtitles[subtitle] %}
+                <td><a href="{{ lang.url }}">{{ lang.ext }}</a></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    Automatic captions:
+        <table border="1">
+        <tr>
+            <th>lang</th>
+            <th>Format</th>
+            <th>Format</th>
+        </tr>
+        {% for subtitle in info.automatic_captions %}
+        <tr>
+        <td>{{ subtitle }}</td>
+            {% for lang in info.automatic_captions[subtitle] %}
+                <td><a href="{{ lang.url }}">{{ lang.ext }}</a></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
     {% else %}
     no fmts
     {% endif %}
