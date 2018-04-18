@@ -67,7 +67,7 @@ class InputURL(FlaskForm):
     url = StringField('Video URL', validators=[DataRequired()])
     submit = SubmitField('Get')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/media', methods=['GET', 'POST'])
 #@app.route('/index', methods=['GET', 'POST'])
 def index():
     form = InputURL()
@@ -86,7 +86,7 @@ def index():
         return dl(info)
     return render_template('index.html', form=form, general=None)
 
-@app.route('/dl', methods=['GET', 'POST'])
+@app.route('/media/dl', methods=['GET', 'POST'])
 def dl(info=None):
     if not info:
         return redirect(url_for('index'))
