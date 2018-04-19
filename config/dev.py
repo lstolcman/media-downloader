@@ -1,0 +1,8 @@
+
+DEBUG = True
+TESTING = True
+HOST = '127.0.0.1'
+PORT = 80
+SSL_CONTEXT = None
+SECRET_KEY = 'dev'
+

@@ -67,8 +67,7 @@ class InputURL(FlaskForm):
     url = StringField('Video URL', validators=[DataRequired()])
     submit = SubmitField('Get')
 
-@app.route('/media', methods=['GET', 'POST'])
-#@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     form = InputURL()
     if form.validate_on_submit():
@@ -80,13 +79,13 @@ def index():
             'skip_download' : True\
             }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            test_url = 'http://www.youtube.com/watch?v=BaW_jenozKc'
+            test_url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             info = ydl.extract_info(form.url.data, download=False)
 
         return dl(info)
     return render_template('index.html', form=form, general=None)
 
-@app.route('/media/dl', methods=['GET', 'POST'])
+@app.route('/dl', methods=['GET', 'POST'])
 def dl(info=None):
     if not info:
         return redirect(url_for('index'))
